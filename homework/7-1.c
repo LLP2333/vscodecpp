@@ -14,7 +14,7 @@ int main()
     {
         static int i=1;
         i +=square(i);
-        printf("%d¡¢,",i);
+        printf("%d¡¢",i);
 
 
     }
