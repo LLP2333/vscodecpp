@@ -45,4 +45,4 @@ void ReadScore(int score[],int n)
        scanf("%d",&score[i]);//原本想实现成绩输错 重新输入的，没有成功，明天再尝试。
    }*/
     }
-}//this is a test
+}
