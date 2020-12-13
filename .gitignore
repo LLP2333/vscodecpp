@@ -6,3 +6,5 @@ listening/lll.exe
 listening/retry.exe
 Array/8-3.exe
 Array/newScore.exe
+*.gitignore
+*.exe
