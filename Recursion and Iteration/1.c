@@ -3,7 +3,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 long Fib(int n);
-int count;
+int count;//count 为全局变量
 int  main(void)
 {
     int n,i,x;
