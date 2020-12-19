@@ -47,7 +47,6 @@ int main(void)
      if(i==3||i==5)
        {
            printf("i=%d\n",i);
-           i++;
            continue;
        }
       if(i==6) 
