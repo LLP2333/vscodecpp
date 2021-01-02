@@ -2,6 +2,6 @@
 #include<stdlib.h>
 int main(void)
 {
- printf("你好世界\n");
+ printf("小贾同学，新年快乐！\n");
  system("pause");
 }
