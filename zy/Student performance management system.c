@@ -7,8 +7,8 @@ int Average(int score[],int n);//用来计算成绩平均值
 void  DataSort(long num[],int score[],int n);
 void  DataSortPlus(long num[],int score[],int n);
 int  Search(long num[],long x,int n);
-
-
+void Analysis(int score[],int analysis[], float percent[],int n);
+void  output(long num[],int score[],int n,int t);
 
 int main(void)
 {
@@ -20,17 +20,23 @@ int main(void)
     printf("6.Statistic  analysis\n");//将学生按成绩分为5类，统计每类人占的百分比
     printf("7.List  record\n");//输出每个学生的学号，考试成绩课堂总分和平均分
     printf("0.Exit\n");//退出
-    printf("Please  enter  your  choice\n");//请做出你的选择
+    
     int  n;//这里n变量为班级人数
     char choice;//储存用户的选择数据
     int  score[N];//成绩
     long num[N];//学号
-    int x,i;//x表示某个学生的学号
-    int analysis[5];
-    scanf("%c",&choice);
-    getchar();
-    switch (choice)
+    int x,i,t;//x表示某个学生的学号,i为搜索函数返回的数组下标，t用来储存平均数
+    int analysis[5]={0};//用来储存5个成绩等级的人数（从高等级到低等级）
+    float percent[5];//用来储存5个成绩等级的人数百分比
+    int m;//定义一个变量用来依次输出5种等级学生的个数和对于的占比
+   
+    
+    do
     {
+      printf("Please  enter  your  choice:\n");//请做出你的选择
+      scanf("%c",&choice);
+     switch (choice)
+     {
         case '1':
         {
         printf("How many students?\n");
@@ -40,8 +46,9 @@ int main(void)
         break;
         case '2':
         {
-           printf("sum=%d\n",Average( score,n)*n);
-           printf("The AverageScore is %d",Average( score,n)) ;
+            t=Average( score,n);
+           printf("sum=%d\n",t*n);
+           printf("The AverageScore is %d\n",t) ;
         }
         break;
         case '3':
@@ -59,14 +66,31 @@ int main(void)
             printf("Please input the student ID\n");
            scanf("%d",&x);
            i=Search(num,x,n);
-           printf("the student is  %dth,score is %d",i,score[i]);
+           printf("the student is  %dth,score is %d\n",(i+1),score[i]);
         }
+        break;
+        case '6':
+        {
+            for(m=0;m<5;m++)
+            {
+             printf("%d,%d\n",analysis[m],percent[m]);
+            }
+        }
+        break;
+        case '7':
+        {
+            output(num,score,n,t);
+        }
+        break;
 
 
 
 
 
-    }
+     }
+     fflush(stdin);
+    
+    }while(choice!='0');
     
   
     system("pause");
@@ -164,12 +188,48 @@ int  Search(long num[],long x,int n)
     return -1;
 }
 
-void Analysis(int score[],int analysis[],int n)
+void Analysis(int score[],int analysis[], float percent[],int n)
 {
     int i;
+    int k;
     for(i=0;i<n;i++)
     {
-        if ()
+        if (score[i]>=90&&score[i]<=100)
+        {
+            analysis[0]=analysis[0]+1;
+        }
+        else  if(score[i]>=80&&score[i]<=89)
+        {
+            analysis[1]=analysis[1]+1;
+        }
+        else  if(score[i]>=70&&score[i]<=79)
+        {
+            analysis[2]=analysis[2]+1;
+        }
+        else  if (score[i]>=60&&score[i]<=69)
+        {
+            analysis[3]=analysis[3]+1;
+        }
+        else  if (score[i]>=0&&score[i]<=59)
+        {
+            analysis[4]=analysis[4]+1;
+        }
+    }//该循环语句用来分析各个成绩等级人数
+    
+    for (k=0;k<5;k++)
+    {
+        percent[k]=(float)analysis[k]/n;
+    }
+
+}
+
+void  output(long num[],int score[],int n,int t)
+{   
+    int i;
+    printf("学号          成绩\n");
+    for(i=0;i<n;i++)
+    {
+        printf("%ld%10d\n",num[i],score[i]);
     }
 }
 
