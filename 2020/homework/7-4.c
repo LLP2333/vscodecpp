@@ -22,3 +22,4 @@ int lcm(int a,int b)
         if()
     }
 }
+//2020
