@@ -228,7 +228,7 @@ void Analysis(int score[],int analysis[], float percent[],int n)
     
     for (k=0;k<5;k++)
     {   
-        percent[k]=(float)analysis[k]/n;
+        percent[k]=(float)analysis[k]/n;// 计算百分比
     }
 
 }
