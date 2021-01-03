@@ -3,7 +3,7 @@
 #include<stdlib.h>
 #define N  30
 void ReadStudentScoreAndId(long num[],int score[],int n);//用来读取学号和成绩
-int Average(int score[],int n);//用来计算成绩平均值
+int Sum(int score[],int n);//用来计算成绩平均值
 void  DataSort(long num[],int score[],int n);
 void  DataSortPlus(long num[],int score[],int n);
 int  Search(long num[],long x,int n);
@@ -28,8 +28,7 @@ int main(void)
     int x,i,t;//x表示某个学生的学号,i为搜索函数返回的数组下标，t用来储存平均数
     int analysis[5]={0};//用来储存5个成绩等级的人数（从高等级到低等级）
     float percent[5];//用来储存5个成绩等级的人数百分比
-    int m;//定义一个变量用来依次输出5种等级学生的个数和对于的占比
-   
+    
     
     do
     {
@@ -46,9 +45,9 @@ int main(void)
         break;
         case '2':
         {
-            t=Average( score,n);
-           printf("sum=%d\n",t*n);
-           printf("The AverageScore is %d\n",t) ;
+            t=Sum( score,n);
+           printf("sum=%d\n",t);
+           printf("The AverageScore is %f\n",(float)t/n);
         }
         break;
         case '3':
@@ -66,15 +65,26 @@ int main(void)
             printf("Please input the student ID\n");
            scanf("%d",&x);
            i=Search(num,x,n);
-           printf("the student is  %dth,score is %d\n",(i+1),score[i]);
+           if(-1!=i)
+           {
+              printf("the student is  %dth,score is %d\n",(i+1),score[i]);
+           }
+           else
+           {
+               printf("Can  not find !\n");
+           }
+           
+           
         }
         break;
         case '6':
-        {
-            for(m=0;m<5;m++)
-            {
-             printf("%d,%d\n",analysis[m],percent[m]);
-            }
+        {   
+            Analysis(score,analysis,percent,n);
+            printf("优秀人数有%d,占比%f\n",analysis[0],percent[0]);
+            printf("良好人数有%d,占比%f\n",analysis[1],percent[1]);
+            printf("中等人数有%d,占比%f\n",analysis[2],percent[2]);
+            printf("及格人数有%d,占比%f\n",analysis[3],percent[3]);
+            printf("不及格人数有%d,占比%f\n",analysis[4],percent[4]);
         }
         break;
         case '7':
@@ -113,7 +123,7 @@ void ReadStudentScoreAndId(long num[],int score[],int n)
     }
     printf("输入结束\n");
 }
-int Average(int score[],int n)
+int Sum(int score[],int n)
 {
     int i,sum =0;
     if(n<=0)
@@ -126,7 +136,7 @@ else
     {
         sum=sum+score[i];
     }
-    return sum/n;
+    return sum;
      }
 }
 void  DataSort(long num[],int score[],int n)
@@ -217,7 +227,7 @@ void Analysis(int score[],int analysis[], float percent[],int n)
     }//该循环语句用来分析各个成绩等级人数
     
     for (k=0;k<5;k++)
-    {
+    {   
         percent[k]=(float)analysis[k]/n;
     }
 
