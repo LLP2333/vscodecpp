@@ -50,10 +50,10 @@ int main (void)
    switch(n)
    {
        case 10:
-        {
-           grade='A';
-           break;
-       }
+         {
+            grade='A';
+             break;
+         }
        case 9:
        {
            grade='A';
