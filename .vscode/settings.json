@@ -1,6 +1,7 @@
 {
     "commentTranslate.targetLanguage": "zh-CN",
     "files.associations": {
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "random": "c"
     }
 }
