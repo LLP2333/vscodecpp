@@ -65,37 +65,14 @@ int DeQueue(SqQueue &Q, Person &e)//删除Q的队头元素，用e返回其值
 Person GetHead(SqQueue Q) {//返回Q的队头元素，不修改队头指针
 	if (Q.front != Q.rear) //队列非空
 		return Q.base[Q.front]; //返回队头元素的值，队头指针不变
-}
-
-void DancePartner(Person dancer[], Person &p) {//结构数组dancer中存放跳舞的男女，num是跳舞的人数。
-	
-	
-	cout << "The dancing partners are:" << endl;
-	while (!QueueEmpty(Fdancers) && !QueueEmpty(Mdancers)) {//依次输出男女舞伴的姓名
-		DeQueue(Fdancers, p); //女士出队
-		EnQueue(Fdancers, p); //插入女队
-		cout << p.name << "  "; //输出出队女士姓名
-		DeQueue(Mdancers, p); //男士出队
-		EnQueue(Mdancers, p); //插入男队
-		cout << p.name << endl; //输出出队男士姓名
-	}
-	/*
-	if (!QueueEmpty(Fdancers)) { //女士队列非空，输出队头女士的姓名
-		p = GetHead(Fdancers); //取女士队头
-		cout << "The first man to get a partner is: " << endl;
-		cout << p.name << endl;
-	} else if (!QueueEmpty(Mdancers)) { //男士队列非空，输出队头男士的姓名
-		p = GetHead(Mdancers); //取男士队头
-		cout << "The first woman to get a partner is: " << p.name << endl;
-	}
-	*/
-}
+		}
 
 
 int main()
 {
 	Person dancer[MAXQSIZE];
 		int i = 0;
+		int f=0,m=0;//统计男生人数，女生人数
 	fstream file;
 	file.open("DancePartner.txt");
 	if (!file) {
@@ -111,20 +88,48 @@ int main()
 	Person p;
 	for (int k = 0; k < i+1; k++) //依次将跳舞者根据其性别入队
 	{
-		p = dancer[i];
+		p = dancer[k];
 		if (p.sex == 'F')
-			EnQueue(Fdancers, p); //插入女队
-		else
+	    {
+          EnQueue(Fdancers, p); //插入女队
+		  f++;
+		}
+		else if(p.sex=='M')
+		{
 			EnQueue(Mdancers, p); //插入男队
+			m++;
+		}
+			
 	}
 	cout<<"请输入舞会次数：";
-	int n;
-	cin>>n;
+	int times;
+	cin>>times;
+     int k=0;
+	 cout << "女      男" << endl;
+	 int w= f<m ? f:m;
+	 int z=0;
+	
+    
+	
+	while (!QueueEmpty(Fdancers) && !QueueEmpty(Mdancers)&&(k<times*w)) {//依次输出男女舞伴的姓名
+	    
+		DeQueue(Fdancers, p); //女士出队
+		EnQueue(Fdancers, p); //插入女队
+		cout << p.name << "  "; //输出出队女士姓名
+		DeQueue(Mdancers, p); //男士出队
+		EnQueue(Mdancers, p); //插入男队
+		cout << p.name << endl; //输出出队男士姓名
+		
+		k++;
+		if(k%w==0)
+		{
+           z++;
+          cout<<"以上是第"<<z<<"次舞曲名单"<<endl;
+		}
+		
 
-	while(n--)
-	{
-      DancePartner(dancer, p);
 	}
+	
 	
 	system("pause");
 	return 0;
