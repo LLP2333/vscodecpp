@@ -2,6 +2,7 @@
     "commentTranslate.targetLanguage": "zh-CN",
     "files.associations": {
         "stdio.h": "c",
-        "random": "c"
+        "random": "c",
+        "iostream": "cpp"
     }
 }
