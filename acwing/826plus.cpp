@@ -1,13 +1,17 @@
 #include<iostream>
 using namespace std;
-const int N=100010;
+
+
+const int N=1e5;
 int value[N],nex[N],index,head;
-void initializer()
+
+void initializer()//初始化
 {
     head=-1;
     index=0;
 }
-void add_to_head(int x)
+
+void add_head(int x)
 {
     //新节点保存值
     value[index]=x;
@@ -18,12 +22,12 @@ void add_to_head(int x)
     //更新index;
     index++;
 }
-//删除第x个节点后一个的节点
+
 void remove1(int k)
 {
     nex[k]=nex[nex[k]];
 }
-//在k+1后一个节点上插入值为x的节点
+//在k后一个节点上插入值为x的节点
 void add(int k,int x)
 {
     value[index]=x;
@@ -31,9 +35,11 @@ void add(int k,int x)
     nex[k]=index;
     index++;
 }
+
+
 int main()
 {
-    initializer();
+      initializer();
     int m;
     cin>>m;
 
@@ -48,7 +54,7 @@ int main()
             case 'H':
             {
                 cin>>x;
-                add_to_head(x);
+                add_head(x);
             }break;
             case 'D':
             {
