@@ -8,8 +8,13 @@ char P[N],S[N];
 int a[N];
 
 
-void next()
+void next(int n)
 {
+    if(n>=2)
+    {
+        if(P[n])
+
+    }
     
 }
 
