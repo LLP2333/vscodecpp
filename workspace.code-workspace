@@ -2,10 +2,6 @@
     "folders": [
 		{
 			"path": "D:/workpace/vscodecpp"
-		},
-		{
-			"name": "henan-normal-university-code",
-			"path": "../henan-normal-university-code"
 		}
 	],
 	"settings": {
